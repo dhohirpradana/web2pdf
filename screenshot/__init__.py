@@ -7,7 +7,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from flask import jsonify, send_file
 
 # Set default download folder for ChromeDriver
 RESULT_FOLDER = r"./download"
