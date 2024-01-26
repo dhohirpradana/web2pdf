@@ -21,6 +21,9 @@ def open_url(address, wait, file_name):
     logging.getLogger('WDM').setLevel(logging.WARNING)
     chrome_options = Options()
     chrome_options.add_argument("--headless")
+    # Disable GPU usage when running headless
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')   # Disable sandboxing
     chrome_options.add_experimental_option("prefs", prefs)
     driver = webdriver.Chrome(service=Service(
         ChromeDriverManager().install()), options=chrome_options)

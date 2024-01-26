@@ -34,10 +34,12 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=5000
+# Set DISPLAY environment variable
+ENV DISPLAY=:99
 
 # Uncomment the following lines if you have SSL certificate and key files
 # COPY cert.pem /app
 # COPY key.pem /app
 
 # Run the Flask application
-CMD ["flask", "run"]
+CMD ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & flask run"]
