@@ -42,4 +42,4 @@ ENV DISPLAY=:99
 # COPY key.pem /app
 
 # Run the Flask application
-CMD ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & flask run"]
+CMD ["echo Halo"]
