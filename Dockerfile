@@ -42,4 +42,4 @@ ENV DISPLAY=:99
 # COPY key.pem /app
 
 # Run the Flask application
-CMD ["echo Halo"]
+CMD ["sh", "-c", "echo Halo"]
