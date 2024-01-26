@@ -1,8 +1,10 @@
 import uuid
 from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
 from screenshot import handler as screenshot_handler
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route('/page2pdf', methods=['GET'])
