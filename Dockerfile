@@ -3,8 +3,8 @@ FROM python:3.8-slim-buster
 # Install necessary dependencies
 RUN apt-get update \
     && apt-get install -y \
-        wget \
-        gnupg \
+    wget \
+    gnupg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -13,7 +13,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     && apt-get update \
     && apt-get install -y \
-        google-chrome-stable \
+    google-chrome-stable \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -42,4 +42,5 @@ ENV DISPLAY=:99
 # COPY key.pem /app
 
 # Run the Flask application
-CMD ["sh", "-c", "echo 'Halo' && tail -f /dev/null"]
+# CMD ["sh", "-c", "echo 'Halo' && tail -f /dev/null"]
+CMD ["flask", "run"]
