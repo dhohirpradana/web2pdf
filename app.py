@@ -28,7 +28,7 @@ def generate_pdf():
 
     # join url and all params except filename and wait
     for param in request.args:
-        if param != 'filename' and param != 'wait' and param != 'long':
+        if param != 'filename' and param != 'wait' and param != 'long' and param != 'url':
             url += f'&{param}={request.args.get(param)}'
 
     print("URL: ", url)
