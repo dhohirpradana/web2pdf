@@ -6,7 +6,7 @@ from PIL import Image
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 # Set default download folder for ChromeDriver
@@ -24,7 +24,7 @@ def open_url(address, wait, file_name):
     chrome_options.add_argument("--headless")
     # Disable GPU usage when running headless
     chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--no-sandbox')   # Disable sandboxing
+    chrome_options.add_argument('--no-sandbox')  # Disable sandboxing
     chrome_options.add_experimental_option("prefs", prefs)
     driver = webdriver.Chrome(service=Service(
         ChromeDriverManager().install()), options=chrome_options)
@@ -56,6 +56,7 @@ def save_screenshot(driver, file_name):
 
         return pdf_path
     except Exception as e:
+        print("Error while saving screenshot!", e)
         return False
 
 
@@ -89,19 +90,20 @@ def scroll_down(driver):
         i = i + viewport_height
 
     previous = None
-    part = 0
 
     for rectangle in rectangles:
-        if not previous is None:
+        if previous is None:
+            pass
+        else:
             driver.execute_script(
                 f"window.scrollTo({rectangle[0]}, {rectangle[1]})")
             time.sleep(0.5)
         # time.sleep(0.2)
 
-        if rectangle[1] + viewport_height > total_height:
-            offset = (rectangle[0], total_height - viewport_height)
-        else:
-            offset = (rectangle[0], rectangle[1])
+        # if rectangle[1] + viewport_height > total_height:
+        #     offset = (rectangle[0], total_height - viewport_height)
+        # else:
+        #     offset = (rectangle[0], rectangle[1])
 
         previous = rectangle
 
