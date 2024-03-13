@@ -46,7 +46,7 @@ def generate_pdf():
     pdf_path = f'{file_name}.pdf'
 
     try:
-        with open(pdf_path, 'rb') as file:
+        with open(pdf_path, 'rb'):
             return send_file(pdf_path, as_attachment=True)
     except FileNotFoundError:
         return jsonify({'message': 'File not found'}), 404
